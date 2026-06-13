@@ -1,4 +1,0 @@
-[dev]
-entry = "src/main.tsx"
-port = 3000
-root = "./"
