@@ -17,8 +17,9 @@ export default function App() {
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const [selectedCell, setSelectedCell] = useState<SelectedCell>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [grid, setGrid] = useState<Cell[][]>(() => initializePuzzle("easy").puzzle);
-  const [fixedGrid, setFixedGrid] = useState<boolean[][]>(() => initializePuzzle("easy").fixed);
+  const [initialPuzzle] = useState(() => initializePuzzle("easy"));
+  const [grid, setGrid] = useState<Cell[][]>(() => initialPuzzle.puzzle);
+  const [fixedGrid, setFixedGrid] = useState<boolean[][]>(() => initialPuzzle.fixed);
   const [startTime, setStartTime] = useState(Date.now());
 
   const statusMessage = useMemo(() => {

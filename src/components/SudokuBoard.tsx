@@ -24,17 +24,17 @@ export default function SudokuBoard({ grid, fixedGrid, selectedCell, onSelectCel
                     <td
                       key={`${rowIndex}-${colIndex}`}
                       onClick={() => onSelectCell(rowIndex, colIndex)}
-                      className={`h-12 w-12 cursor-pointer select-none border bg-white text-center align-middle text-base font-semibold transition hover:bg-slate-100 sm:h-14 sm:w-14 ${
+                      className={`h-12 w-12 cursor-pointer select-none border bg-white text-center align-middle text-base font-semibold transition sm:h-14 sm:w-14 ${
                         selected
                           ? isFixed
-                            ? "bg-emerald-100 text-slate-900"
+                            ? "bg-emerald-200 text-slate-900"
                             : "bg-slate-200 text-slate-900"
                           : isFixed
                           ? "bg-emerald-100 text-slate-900"
                           : isIncorrect
                           ? "bg-rose-100 text-rose-900"
                           : "bg-white text-slate-900"
-                      } ${selected ? "ring-2 ring-emerald-500" : ""} ${
+                      } ${selected ? "ring-2 ring-emerald-500 ring-inset" : ""} ${
                         colIndex % 3 === 0 ? "border-l-2 border-slate-400" : "border-l border-slate-300"
                       } ${
                         rowIndex % 3 === 0 ? "border-t-2 border-slate-400" : "border-t border-slate-300"
