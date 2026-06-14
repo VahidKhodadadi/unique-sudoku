@@ -148,16 +148,6 @@ export default function App() {
         <NumberPicker onFillValue={handleFillValue} />
 
         <ControlsSection onNewGame={requestNewGame} onClearCell={handleClearCell} selectedCell={selectedCell} />
-
-        {/* <section className="mt-6 rounded-[2rem] border border-slate-200 bg-white/90 p-5 text-sm text-slate-500 shadow-sm">
-          <p className="font-semibold text-slate-900">How to play</p>
-          <ul className="mt-3 list-disc space-y-2 pl-5">
-            <li>Select an empty cell in the grid.</li>
-            <li>Choose a number button to fill the selected cell.</li>
-            <li>Each wrong answer increases the mistake counter.</li>
-            <li>Fill all cells correctly to win.</li>
-          </ul>
-        </section> */}
       </main>
     </div>
   );
