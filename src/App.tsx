@@ -103,21 +103,10 @@ export default function App() {
     });
   }
 
-  function handleClearCell() {
-    if (!selectedCell || gameStatus !== "playing") return;
-    const { row, col } = selectedCell;
-    if (fixedGrid[row][col]) return;
-    setGrid((currentGrid) => {
-      const nextGrid = cloneGrid(currentGrid);
-      nextGrid[row][col] = 0;
-      return nextGrid;
-    });
-  }
-
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
       <div className="relative overflow-hidden">
-        <TopBar onNewGame={requestNewGame} />
+        <TopBar onNewGame={() => requestNewGame(difficulty)} />
       </div>
 
       <main className="mx-auto max-w-6xl px-4 py-6 lg:px-8">
