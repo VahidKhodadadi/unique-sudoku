@@ -19,6 +19,7 @@ export default function SudokuBoard({ grid, fixedGrid, selectedCell, onSelectCel
                 {row.map((cell, colIndex) => {
                   const isFixed = fixedGrid[rowIndex][colIndex];
                   const selected = selectedCell?.row === rowIndex && selectedCell?.col === colIndex;
+                  const isInSelectedRowOrCol = selectedCell && (selectedCell.row === rowIndex || selectedCell.col === colIndex) && !selected;
                   const isIncorrect = cell !== 0 && !isFixed && cell !== solution[rowIndex][colIndex];
                   return (
                     <td
@@ -29,8 +30,10 @@ export default function SudokuBoard({ grid, fixedGrid, selectedCell, onSelectCel
                           ? isFixed
                             ? "bg-blue-200 text-slate-900"
                             : "bg-slate-200 text-slate-900"
+                          : isInSelectedRowOrCol
+                          ? "bg-slate-100 text-slate-900"
                           : isFixed
-                          ? "bg-blue-100 text-slate-900"
+                          ? "!bg-blue-100 text-slate-900"
                           : isIncorrect
                           ? "bg-rose-100 text-rose-900"
                           : "bg-white text-slate-900"
