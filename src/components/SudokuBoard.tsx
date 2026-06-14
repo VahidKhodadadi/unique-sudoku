@@ -26,7 +26,7 @@ export default function SudokuBoard({ grid, fixedGrid, selectedCell, onSelectCel
                       onClick={() => onSelectCell(rowIndex, colIndex)}
                       className={`h-12 w-12 cursor-pointer select-none border bg-white text-center align-middle text-base font-semibold transition hover:bg-slate-100 sm:h-14 sm:w-14 ${
                         isFixed
-                          ? "bg-slate-200 text-slate-900"
+                          ? "bg-emerald-50 text-slate-900"
                           : isIncorrect
                           ? "bg-rose-100 text-rose-900"
                           : "bg-white text-slate-900"

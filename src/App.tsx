@@ -17,9 +17,8 @@ export default function App() {
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const [selectedCell, setSelectedCell] = useState<SelectedCell>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [initialPuzzle] = useState(() => initializePuzzle("easy"));
-  const [grid, setGrid] = useState<Cell[][]>(() => initialPuzzle.puzzle);
-  const [fixedGrid, setFixedGrid] = useState<boolean[][]>(() => initialPuzzle.fixed);
+  const [grid, setGrid] = useState<Cell[][]>(() => initializePuzzle("easy").puzzle);
+  const [fixedGrid, setFixedGrid] = useState<boolean[][]>(() => initializePuzzle("easy").fixed);
   const [startTime, setStartTime] = useState(Date.now());
 
   const statusMessage = useMemo(() => {
@@ -27,11 +26,6 @@ export default function App() {
     if (gameStatus === "lost") return "Too many mistakes.";
     return "Keep going.";
   }, [gameStatus]);
-
-  useEffect(() => {
-    handleNewGame();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   useEffect(() => {
     if (gameStatus !== "playing") return;
@@ -46,13 +40,14 @@ export default function App() {
 
     const promptText = gameStatus === "won" ? "You solved the Sudoku!" : "You reached the mistake limit.";
     if (window.confirm(`${promptText} Start a new game?`)) {
-      handleNewGame();
+      startNewGame(difficulty);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameStatus]);
 
-  function handleNewGame() {
-    const { puzzle, fixed } = initializePuzzle(difficulty);
+  function startNewGame(level: Difficulty) {
+    const { puzzle, fixed } = initializePuzzle(level);
+    setDifficulty(level);
     setGrid(puzzle);
     setFixedGrid(fixed);
     setMistakes(0);
@@ -62,16 +57,20 @@ export default function App() {
     setGameStatus("playing");
   }
 
+  function requestNewGame(level: Difficulty = difficulty) {
+    const isActiveGame = gameStatus === "playing";
+    const promptText =
+      level === difficulty
+        ? "Restart the current game? This will reset your progress."
+        : `Start a new ${level} game? This will reset your progress.`;
+
+    if (!isActiveGame || window.confirm(promptText)) {
+      startNewGame(level);
+    }
+  }
+
   function handleChooseDifficulty(level: Difficulty) {
-    setDifficulty(level);
-    const { puzzle, fixed } = initializePuzzle(level);
-    setGrid(puzzle);
-    setFixedGrid(fixed);
-    setMistakes(0);
-    setElapsedSeconds(0);
-    setStartTime(Date.now());
-    setSelectedCell(null);
-    setGameStatus("playing");
+    requestNewGame(level);
   }
 
   function handleFillValue(value: number) {
@@ -119,12 +118,12 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
       <div className="relative overflow-hidden">
-        <TopBar onNewGame={handleNewGame} />
+        <TopBar onNewGame={requestNewGame} />
         {/* <DrawerMenu
           open={drawerOpen}
           difficulty={difficulty}
           onClose={() => setDrawerOpen(false)}
-          onNewGame={handleNewGame}
+          onNewGame={requestNewGame}
           onChooseDifficulty={handleChooseDifficulty}
         /> */}
       </div>
@@ -148,7 +147,7 @@ export default function App() {
 
         <NumberPicker onFillValue={handleFillValue} />
 
-        <ControlsSection onNewGame={handleNewGame} onClearCell={handleClearCell} selectedCell={selectedCell} />
+        <ControlsSection onNewGame={requestNewGame} onClearCell={handleClearCell} selectedCell={selectedCell} />
 
         {/* <section className="mt-6 rounded-[2rem] border border-slate-200 bg-white/90 p-5 text-sm text-slate-500 shadow-sm">
           <p className="font-semibold text-slate-900">How to play</p>
