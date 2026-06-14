@@ -10,7 +10,7 @@ interface SudokuBoardProps {
 
 export default function SudokuBoard({ grid, fixedGrid, selectedCell, onSelectCell }: SudokuBoardProps) {
   return (
-    <section className="mt-8 overflow-x-auto flex justify-center">
+    <section className="mt-2 overflow-x-auto flex justify-center">
       <div className="inline-block rounded-[1.5rem] border border-slate-200 bg-white p-3 shadow-lg">
         <table className="border-separate border-spacing-0">
           <tbody>
@@ -27,10 +27,10 @@ export default function SudokuBoard({ grid, fixedGrid, selectedCell, onSelectCel
                       className={`h-12 w-12 cursor-pointer select-none border bg-white text-center align-middle text-base font-semibold transition sm:h-14 sm:w-14 ${
                         selected
                           ? isFixed
-                            ? "bg-emerald-200 text-slate-900"
+                            ? "bg-blue-200 text-slate-900"
                             : "bg-slate-200 text-slate-900"
                           : isFixed
-                          ? "bg-emerald-100 text-slate-900"
+                          ? "bg-blue-100 text-slate-900"
                           : isIncorrect
                           ? "bg-rose-100 text-rose-900"
                           : "bg-white text-slate-900"

@@ -1,12 +1,10 @@
 import { SelectedCell } from "../types";
 
 interface ControlsSectionProps {
-  onNewGame: () => void;
-  onClearCell: () => void;
   selectedCell: SelectedCell;
 }
 
-export default function ControlsSection({ onNewGame, onClearCell, selectedCell }: ControlsSectionProps) {
+export default function ControlsSection({ selectedCell }: ControlsSectionProps) {
   return (
     <section className="mt-6 grid gap-4 sm:grid-cols-[1fr_auto]">
       <div className="rounded-[2rem] border border-slate-200 bg-white p-4 shadow-lg">

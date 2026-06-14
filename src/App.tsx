@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from "react";
 import { Difficulty, SelectedCell, GameStatus, Cell } from "./types";
 import { initializePuzzle, cloneGrid, solution } from "./game";
 import TopBar from "./components/TopBar";
-import DrawerMenu from "./components/DrawerMenu";
 import StatusPanel from "./components/StatusPanel";
 import SudokuBoard from "./components/SudokuBoard";
 import ControlsSection from "./components/ControlsSection";
@@ -16,7 +15,6 @@ export default function App() {
   const [mistakes, setMistakes] = useState(0);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const [selectedCell, setSelectedCell] = useState<SelectedCell>(null);
-  const [drawerOpen, setDrawerOpen] = useState(false);
   const [initialPuzzle] = useState(() => initializePuzzle("easy"));
   const [grid, setGrid] = useState<Cell[][]>(() => initialPuzzle.puzzle);
   const [fixedGrid, setFixedGrid] = useState<boolean[][]>(() => initialPuzzle.fixed);
@@ -120,13 +118,6 @@ export default function App() {
     <div className="min-h-screen bg-slate-50 text-slate-900">
       <div className="relative overflow-hidden">
         <TopBar onNewGame={requestNewGame} />
-        {/* <DrawerMenu
-          open={drawerOpen}
-          difficulty={difficulty}
-          onClose={() => setDrawerOpen(false)}
-          onNewGame={requestNewGame}
-          onChooseDifficulty={handleChooseDifficulty}
-        /> */}
       </div>
 
       <main className="mx-auto max-w-6xl px-4 py-6 lg:px-8">
@@ -148,7 +139,7 @@ export default function App() {
 
         <NumberPicker onFillValue={handleFillValue} />
 
-        <ControlsSection onNewGame={requestNewGame} onClearCell={handleClearCell} selectedCell={selectedCell} />
+        <ControlsSection selectedCell={selectedCell} />
       </main>
     </div>
   );
