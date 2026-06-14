@@ -4,7 +4,7 @@ interface NumberPickerProps {
 
 export default function NumberPicker({ onFillValue }: NumberPickerProps) {
   return (
-    <section className="mt-6 rounded-[1.5rem] border border-slate-200 bg-white p-4 shadow-lg flex flex-col items-center">
+    <section className="mt-2 rounded-[1.5rem] border border-slate-200 bg-white p-4 shadow-lg flex flex-col items-center">
       <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Fill a number</p>
       <div className="flex flex-wrap items-center justify-center gap-3">
         {Array.from({ length: 9 }, (_, index) => index + 1).map((value) => (

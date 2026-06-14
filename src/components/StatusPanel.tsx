@@ -19,7 +19,7 @@ export default function StatusPanel({
   onChooseDifficulty,
 }: StatusPanelProps) {
   return (
-    <section className="flex flex-nowrap items-center justify-between gap-2 overflow-x-auto rounded-[1.25rem] border border-slate-200 bg-slate-100/80 p-2 shadow-sm backdrop-blur-sm">
+    <section className="flex flex-nowrap items-center justify-between gap-2 overflow-hidden rounded-[1.25rem] border border-slate-200 bg-slate-100/80 p-2 shadow-sm backdrop-blur-sm">
       <div className="min-w-[7rem] flex-1 rounded-2xl border border-slate-200 bg-white/80 px-2 py-1.5 text-slate-700 shadow-sm">
         <p className="text-[9px] uppercase tracking-[0.2em] text-slate-500">Mistakes</p>
         <p className="mt-1 text-base font-semibold">{mistakes} / {mistakeThreshold}</p>
