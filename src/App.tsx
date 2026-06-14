@@ -119,14 +119,14 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
       <div className="relative overflow-hidden">
-        <TopBar drawerOpen={drawerOpen} onToggleDrawer={() => setDrawerOpen((open) => !open)} onNewGame={handleNewGame} />
-        <DrawerMenu
+        <TopBar onNewGame={handleNewGame} />
+        {/* <DrawerMenu
           open={drawerOpen}
           difficulty={difficulty}
           onClose={() => setDrawerOpen(false)}
           onNewGame={handleNewGame}
           onChooseDifficulty={handleChooseDifficulty}
-        />
+        /> */}
       </div>
 
       <main className="mx-auto max-w-6xl px-4 py-6 lg:px-8">
@@ -146,11 +146,11 @@ export default function App() {
           onSelectCell={(row, col) => setSelectedCell({ row, col })}
         />
 
-        <ControlsSection onNewGame={handleNewGame} onClearCell={handleClearCell} selectedCell={selectedCell} />
-
         <NumberPicker onFillValue={handleFillValue} />
 
-        <section className="mt-6 rounded-[2rem] border border-slate-200 bg-white/90 p-5 text-sm text-slate-500 shadow-sm">
+        <ControlsSection onNewGame={handleNewGame} onClearCell={handleClearCell} selectedCell={selectedCell} />
+
+        {/* <section className="mt-6 rounded-[2rem] border border-slate-200 bg-white/90 p-5 text-sm text-slate-500 shadow-sm">
           <p className="font-semibold text-slate-900">How to play</p>
           <ul className="mt-3 list-disc space-y-2 pl-5">
             <li>Select an empty cell in the grid.</li>
@@ -158,7 +158,7 @@ export default function App() {
             <li>Each wrong answer increases the mistake counter.</li>
             <li>Fill all cells correctly to win.</li>
           </ul>
-        </section>
+        </section> */}
       </main>
     </div>
   );
